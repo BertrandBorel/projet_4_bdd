@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:8081
--- Generation Time: Jan 14, 2022 at 06:09 PM
+-- Generation Time: Jan 17, 2022 at 05:07 PM
 -- Server version: 5.7.24
 -- PHP Version: 7.4.16
 
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `bdd_ikeo_nouveau`
+-- Database: `bdd_ikeo`
 --
 
 -- --------------------------------------------------------
@@ -47,7 +47,8 @@ INSERT INTO `clients` (`id_client`, `type`, `nom_client`, `adresse`, `ville`, `i
 (4, 'Magasin', 'Magasin Tout A La Maison', 'Rue de la Bastille', 'Paris ', 6),
 (5, 'Magasin ', 'Bo Meuble', ' Avenue des Trois Dragons ', 'Barcelone', 8),
 (6, 'Central d\'achat ', 'The World Compagny ', 'Oxford street ', 'Londres', 2),
-(7, 'Magasin ', 'The Best Greatest Beautifulest Furniture ', 'Coven Garden ', 'Londres', 2);
+(7, 'Magasin ', 'The Best Greatest Beautifulest Furniture ', 'Coven Garden ', 'Londres', 2),
+(8, 'Magasin', 'Tout à la maison', 'Place Terreaux', 'Lyon', 6);
 
 -- --------------------------------------------------------
 
@@ -193,8 +194,8 @@ ALTER TABLE `clients`
 -- Indexes for table `concerne`
 --
 ALTER TABLE `concerne`
-  ADD PRIMARY KEY (`id_produit`),
-  ADD KEY `id_facture` (`id_facture`);
+  ADD KEY `id_facture` (`id_facture`),
+  ADD KEY `id_produit` (`id_produit`);
 
 --
 -- Indexes for table `factures`
@@ -213,9 +214,9 @@ ALTER TABLE `localisation`
 -- Indexes for table `produire`
 --
 ALTER TABLE `produire`
-  ADD PRIMARY KEY (`id_site_production`),
   ADD KEY `id_produit` (`id_produit`),
-  ADD KEY `id_produit_2` (`id_produit`);
+  ADD KEY `id_produit_2` (`id_produit`),
+  ADD KEY `id_site_production` (`id_site_production`);
 
 --
 -- Indexes for table `produits`
@@ -238,13 +239,7 @@ ALTER TABLE `sites_productions`
 -- AUTO_INCREMENT for table `clients`
 --
 ALTER TABLE `clients`
-  MODIFY `id_client` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
-
---
--- AUTO_INCREMENT for table `concerne`
---
-ALTER TABLE `concerne`
-  MODIFY `id_produit` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_client` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `factures`
@@ -257,12 +252,6 @@ ALTER TABLE `factures`
 --
 ALTER TABLE `localisation`
   MODIFY `id_pays` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
-
---
--- AUTO_INCREMENT for table `produire`
---
-ALTER TABLE `produire`
-  MODIFY `id_site_production` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `produits`
@@ -290,8 +279,8 @@ ALTER TABLE `clients`
 -- Constraints for table `concerne`
 --
 ALTER TABLE `concerne`
-  ADD CONSTRAINT `concerne_ibfk_1` FOREIGN KEY (`id_produit`) REFERENCES `produits` (`id_produit`),
-  ADD CONSTRAINT `concerne_ibfk_2` FOREIGN KEY (`id_facture`) REFERENCES `factures` (`id_facture`);
+  ADD CONSTRAINT `concerne_ibfk_2` FOREIGN KEY (`id_facture`) REFERENCES `factures` (`id_facture`),
+  ADD CONSTRAINT `concerne_ibfk_3` FOREIGN KEY (`id_produit`) REFERENCES `produits` (`id_produit`);
 
 --
 -- Constraints for table `factures`
@@ -303,8 +292,8 @@ ALTER TABLE `factures`
 -- Constraints for table `produire`
 --
 ALTER TABLE `produire`
-  ADD CONSTRAINT `produire_ibfk_1` FOREIGN KEY (`id_site_production`) REFERENCES `sites_productions` (`id_site_production`),
-  ADD CONSTRAINT `produire_ibfk_2` FOREIGN KEY (`id_produit`) REFERENCES `produits` (`id_produit`);
+  ADD CONSTRAINT `produire_ibfk_2` FOREIGN KEY (`id_produit`) REFERENCES `produits` (`id_produit`),
+  ADD CONSTRAINT `produire_ibfk_3` FOREIGN KEY (`id_site_production`) REFERENCES `sites_productions` (`id_site_production`);
 
 --
 -- Constraints for table `sites_productions`
