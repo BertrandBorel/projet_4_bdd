@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:8081
--- Generation Time: Jan 17, 2022 at 05:07 PM
+-- Generation Time: Jan 17, 2022 at 05:55 PM
 -- Server version: 5.7.24
 -- PHP Version: 7.4.16
 
@@ -43,7 +43,6 @@ CREATE TABLE `clients` (
 INSERT INTO `clients` (`id_client`, `type`, `nom_client`, `adresse`, `ville`, `id_pays`) VALUES
 (1, 'Magasin', 'Bo Meuble', 'Place Vendôme ', 'Paris ', 6),
 (2, 'Magasin ', 'Mobel ', 'Porte de Brandebourg ', 'Berlin', 1),
-(3, 'Magasin ', 'Bo Meuble ', 'Rue Jean Jaurès ', 'Brest ', 6),
 (4, 'Magasin', 'Magasin Tout A La Maison', 'Rue de la Bastille', 'Paris ', 6),
 (5, 'Magasin ', 'Bo Meuble', ' Avenue des Trois Dragons ', 'Barcelone', 8),
 (6, 'Central d\'achat ', 'The World Compagny ', 'Oxford street ', 'Londres', 2),
@@ -71,7 +70,7 @@ CREATE TABLE `concerne` (
 CREATE TABLE `factures` (
   `id_facture` int(11) NOT NULL,
   `numero` varchar(50) NOT NULL,
-  `date` varchar(50) NOT NULL,
+  `date` date NOT NULL,
   `nom_produit` varchar(50) NOT NULL,
   `id_client` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -81,13 +80,14 @@ CREATE TABLE `factures` (
 --
 
 INSERT INTO `factures` (`id_facture`, `numero`, `date`, `nom_produit`, `id_client`) VALUES
-(1, 'MSQ291 ', '15/06/2018 ', 'Knutsen, Moen, Eide', 1),
-(2, 'MSQ292 ', '23/06/2018', 'Ruud, Gulbrandsen', 5),
-(3, 'MSQ293 ', '23/06/2018', 'Eide, Naess, Lund, Gulbrandsen,  Apfelgluk, Dahl ', 6),
-(8, 'MSQ294 ', '28/06/2018 ', 'Knutsen, Moen, Lund', 1),
-(9, 'MSQ295 ', '01/07/2018 ', 'Knutsen, Dahl', 4),
-(10, 'MSQ296 ', '04/07/2018', 'Moen, Naess, Lund', 7),
-(11, 'MSQ297 ', '12/07/2018 ', 'Gulbrandsen, Naess, Lund', 2);
+(1, 'MSQ291 ', '2018-06-15', 'Knutsen, Moen, Eide', 1),
+(2, 'MSQ292 ', '2018-06-23', 'Ruud, Gulbrandsen', 5),
+(3, 'MSQ293 ', '2018-06-23', 'Eide, Naess, Lund, Gulbrandsen,  Apfelgluk, Dahl ', 6),
+(8, 'MSQ294 ', '2018-06-28', 'Knutsen, Moen, Lund', 1),
+(9, 'MSQ295 ', '2018-07-01', 'Knutsen, Dahl', 4),
+(10, 'MSQ296 ', '2018-07-04', 'Moen, Naess, Lund', 7),
+(11, 'MSQ297 ', '2018-07-12', 'Gulbrandsen, Naess, Lund', 2),
+(12, 'MSQ298', '2018-08-28', 'Naess', 8);
 
 -- --------------------------------------------------------
 
@@ -154,7 +154,7 @@ INSERT INTO `produits` (`id_produit`, `nom_produit`, `ref_produit`, `description
 (6, 'Lund', ' LXAL78 ', 'Bureau-cafetière électrique ', 'Non', 'Haral, Olaf'),
 (7, 'Dahl ', 'LXAL12 ', 'Tiroir à ronds de serviette ', 'Oui ', 'Sverre, Olaf'),
 (8, 'Ruud ', 'OANT90 ', 'Bureau-lit conbiné ', 'Non ', 'Olaf'),
-(9, 'Apfelgluk ', 'OANT12 ', 'Panier à chien (ou à chat) ', 'Non ', 'Olaf');
+(9, 'Apfelgluck', 'OANT12 ', 'Panier à chien (ou à chat) ', 'Non ', 'Olaf');
 
 -- --------------------------------------------------------
 
@@ -239,13 +239,13 @@ ALTER TABLE `sites_productions`
 -- AUTO_INCREMENT for table `clients`
 --
 ALTER TABLE `clients`
-  MODIFY `id_client` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id_client` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `factures`
 --
 ALTER TABLE `factures`
-  MODIFY `id_facture` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id_facture` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `localisation`
